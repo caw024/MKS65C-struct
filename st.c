@@ -1,13 +1,15 @@
 #include <stdio.h>
 
-struct pokemon {char *  s;int i;};
+struct pokemon {char * type;int level;};
 
-struct student(char * name, int age){
-  struct pokemon 
-}
+
+
+
+
+
+
+
 
 
 int main(){
- 
-  
 }

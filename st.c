@@ -1,32 +1,30 @@
 #include <stdio.h>
-
-struct pokemon {char * type;int level;};
+#include <stdlib.h>
+#include <time.h>
+struct pokemon {char name[15];int level;};
 
 struct pokemon Pikachu;
-Pikachu.type = "Electric";
+strcpy(Pikachu.name,"Pikachu");
 Pikachu.level = 20;
 
 struct pokemon Charizard;
-Pikachu.type = "Fire";
-Pikachu.level = 5;
+strcpy(Charizard.name,"Charizard");
+Charizard.level = 5;
 
 struct pokemon Blastoise;
-Pikachu.type = "Aqua";
-Pikachu.level = 500;
+strcpy(Blastoise.name,"Blastoise");
+Blastoise.level = 500;
 
-struct pokemon pokemons[] = {Pikachu, Charizard, Blastoise};
+struct pokemon pokemons[4] = { Pikachu,Charizard, Blastoise};
 
 struct pokemon info(){
+  srand(time(NULL));
+  return pokemons[rand() % 3];
   
   
 }
 
-
-
-
-
-
-
-
 int main(){
+  struct pokemon rando = info();
+  printf("Pokemon: %s/nLevel: %d",rando.name,rando.level);
 }

@@ -16,6 +16,12 @@ void info(struct pokemon A){
   printf("Pokemon: %s\nLevel: %d\n",A.name,A.level);
 }
 
+void modifylevel(struct pokemon A, int lvl){
+  printf("Modifying original level (%d) of %s to level %d...\n", A.level,A.name,lvl);
+  A.level = lvl;
+}
+
+
 int main(){
 
   struct pokemon Pikachu;
@@ -36,4 +42,7 @@ int main(){
   
   struct pokemon rando = randpoke();
   info(rando);
+
+  modifylevel(Pikachu, 100);
+  printf("Pikachu is now level %d\n", Pikachu.level);
 }

@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 
-struct pokemon {char name[20];int level;};
+struct pokemon {char name[20];int level;struct pokemon * n;};
 struct pokemon pokemons[3];
 
 
@@ -16,9 +16,8 @@ void info(struct pokemon A){
   printf("Pokemon: %s\nLevel: %d\n",A.name,A.level);
 }
 
-void modifylevel(struct pokemon A, int lvl){
-  printf("Modifying original level (%d) of %s to level %d...\n", A.level,A.name,lvl);
-  A.level = lvl;
+void modifylevel(struct pokemon * A, int lvl){
+  (*A).level = lvl;
 }
 
 
@@ -27,6 +26,7 @@ int main(){
   struct pokemon Pikachu;
   strcpy(Pikachu.name,"Pikachu");
   Pikachu.level = 20;
+  Pikachu.n = &Pikachu;
 
   struct pokemon Charizard;
   strcpy(Charizard.name,"Charizard");
@@ -43,6 +43,6 @@ int main(){
   struct pokemon rando = randpoke();
   info(rando);
 
-  modifylevel(Pikachu, 100);
+  modifylevel(Pikachu.n, 100);
   printf("Pikachu is now level %d\n", Pikachu.level);
 }

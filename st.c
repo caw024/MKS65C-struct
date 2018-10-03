@@ -7,9 +7,13 @@ struct pokemon {char name[20];int level;};
 struct pokemon pokemons[3];
 
 
-struct pokemon info(){
+struct pokemon randpoke(){
   srand(time(NULL));
   return pokemons[rand() % 3];
+}
+
+void info(struct pokemon A){
+  printf("Pokemon: %s\nLevel: %d\n",A.name,A.level);
 }
 
 int main(){
@@ -30,7 +34,6 @@ int main(){
   pokemons[1] = Charizard;
   pokemons[2] = Blastoise;
   
-  struct pokemon rando = info();
-  
-  printf("Pokemon: %s\nLevel: %d\n",rando.name,rando.level);
+  struct pokemon rando = randpoke();
+  info(rando);
 }

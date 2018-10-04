@@ -3,7 +3,7 @@
 #include <time.h>
 #include <string.h>
 
-struct pokemon {char name[20];int level;struct pokemon * n;};
+struct pokemon {char name[50];int level;struct pokemon * n;};
 struct pokemon pokemons[4];
 
 
@@ -13,12 +13,18 @@ struct pokemon randpoke(){
 }
 
 void info(struct pokemon A){
-  printf("There's something in the grass!!!\nPokemon: %s\nLevel: %d\n",A.name,A.level);
+  printf("Pokemon: %s\nLevel: %d\n",A.name,A.level);
 }
 
 void modifylevel(struct pokemon * A, int lvl){
   (*A).level = lvl;
 }
+
+
+void modifyname(struct pokemon * A, char *name){
+  strcpy( (*A).name, name);
+}
+
 
 void attack(struct pokemon * A, char *attack){
   printf("Pikachu gets ready for attack...\n");
@@ -40,10 +46,12 @@ int main(){
   struct pokemon Charizard;
   strcpy(Charizard.name,"Charizard");
   Charizard.level = 5;
+  Charizard.n = &Charizard;
 
   struct pokemon Blastoise;
   strcpy(Blastoise.name,"Blastoise");
   Blastoise.level = 500;
+  Blastoise.n = &Blastoise;
 
   struct pokemon Alakazam;
   strcpy(Alakazam.name,"Alakzam");
@@ -56,15 +64,19 @@ int main(){
   pokemons[3] = Pikachu;
 
   struct pokemon rando = randpoke();
+  printf("There's something in the grass!!!\n");
   info(rando);
 
   printf("-----------------------------\n");
   printf("You choose Pikachu!\n");
-
+  info(Pikachu);
 
   attack(Pikachu.n, "electric shock");
   printf("%s\n", Pikachu.name);
-  strcpy(Pikachu.name, "Pikachu");
+  modifyname(Pikachu.n, "Pikachu");
   printf("%s has been defeated...\n", rando.name);
+  printf("Pikachus level increased from %d ", Pikachu.level);
+  modifylevel(Pikachu.n, 100);
+  printf("to %d\n", Pikachu.level);
   printf("%s is tired now, good night...\n", Pikachu.name);
 }

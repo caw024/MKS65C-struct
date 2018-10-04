@@ -3,4 +3,4 @@ all: st.o
 run:
 	./a.out
 st.o: st.c st.h
-	gcc -c -w st.c
+	gcc -c st.c
